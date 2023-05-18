@@ -16,6 +16,13 @@ import PropTypes from 'prop-types'
 
 import ConfigurationUpload from '../../shared/ConfigurationUpload'
 import { Button } from '@mui/material'
+import {
+  AddRounded,
+  ArticleRounded,
+  BackupRounded,
+  QuestionMarkRounded,
+  SettingsRounded
+} from '@mui/icons-material'
 
 class NavigationHeader extends React.Component {
   static propTypes = {
@@ -37,6 +44,7 @@ class NavigationHeader extends React.Component {
           style={{ textTransform: 'none', fontSize: '12px', lineHeight: '14px' }}
           href="#logs"
           onClick={(event) => this.handleClick(event, 'logs')}
+          startIcon={<ArticleRounded />}
         >
           Logs
         </Button>
@@ -53,6 +61,7 @@ class NavigationHeader extends React.Component {
             style={{ textTransform: 'none', fontSize: '12px', lineHeight: '14px' }}
             href="#help"
             onClick={(event) => this.handleClick(event, 'help')}
+            startIcon={<QuestionMarkRounded />}
           >
             Help
           </Button>
@@ -62,6 +71,7 @@ class NavigationHeader extends React.Component {
             style={{ textTransform: 'none', fontSize: '12px', lineHeight: '14px' }}
             href={'#' + 'configuration/new'}
             onClick={(event) => this.handleClick(event, 'configuration/new')}
+            startIcon={<AddRounded />}
           >
             Create
           </Button>
@@ -74,6 +84,7 @@ class NavigationHeader extends React.Component {
             style={{ textTransform: 'none', fontSize: '12px', lineHeight: '14px' }}
             href="#settings"
             onClick={(event) => this.handleClick(event, 'settings')}
+            startIcon={<SettingsRounded />}
           >
             Settings
           </Button>
@@ -83,6 +94,7 @@ class NavigationHeader extends React.Component {
             style={{ textTransform: 'none', fontSize: '12px', lineHeight: '14px' }}
             href="#backup"
             onClick={this.props.onDownloadAll}
+            startIcon={<BackupRounded />}
           >
             Backup
           </Button>
