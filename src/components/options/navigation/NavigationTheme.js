@@ -66,8 +66,8 @@ export default {
         folder: {
           display: 'inline-block',
           verticalAlign: 'top',
-          color: 'var(--navigation-text-color)',
-          width: 'calc(100% - 24px)'
+          color: 'var(--navigation-text-color)'
+          // width: 'calc(100% - 24px)'
         },
         item: {
           display: 'inline-block',

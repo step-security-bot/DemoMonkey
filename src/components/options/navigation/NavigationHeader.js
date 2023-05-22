@@ -44,7 +44,7 @@ class NavigationHeader extends React.Component {
           style={{ textTransform: 'none', fontSize: '12px', lineHeight: '14px' }}
           href="#logs"
           onClick={(event) => this.handleClick(event, 'logs')}
-          startIcon={<ArticleRounded />}
+          startIcon={<ArticleRounded fontSize="small" />}
         >
           Logs
         </Button>
@@ -61,7 +61,7 @@ class NavigationHeader extends React.Component {
             style={{ textTransform: 'none', fontSize: '12px', lineHeight: '14px' }}
             href="#help"
             onClick={(event) => this.handleClick(event, 'help')}
-            startIcon={<QuestionMarkRounded />}
+            startIcon={<QuestionMarkRounded fontSize="small" />}
           >
             Help
           </Button>
@@ -71,7 +71,7 @@ class NavigationHeader extends React.Component {
             style={{ textTransform: 'none', fontSize: '12px', lineHeight: '14px' }}
             href={'#' + 'configuration/new'}
             onClick={(event) => this.handleClick(event, 'configuration/new')}
-            startIcon={<AddRounded />}
+            startIcon={<AddRounded fontSize="small" />}
           >
             Create
           </Button>
@@ -84,7 +84,7 @@ class NavigationHeader extends React.Component {
             style={{ textTransform: 'none', fontSize: '12px', lineHeight: '14px' }}
             href="#settings"
             onClick={(event) => this.handleClick(event, 'settings')}
-            startIcon={<SettingsRounded />}
+            startIcon={<SettingsRounded fontSize="small" />}
           >
             Settings
           </Button>
@@ -94,7 +94,7 @@ class NavigationHeader extends React.Component {
             style={{ textTransform: 'none', fontSize: '12px', lineHeight: '14px' }}
             href="#backup"
             onClick={this.props.onDownloadAll}
-            startIcon={<BackupRounded />}
+            startIcon={<BackupRounded fontSize="small" />}
           >
             Backup
           </Button>
