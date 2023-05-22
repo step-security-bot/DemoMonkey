@@ -27,6 +27,7 @@ import CommandBuilder from '../../../commands/CommandBuilder'
 import ErrorCommand from '../../../commands/ErrorCommand'
 import Switch from '@mui/material/Switch'
 import { Button, Stack } from '@mui/material'
+import { DarkModeRounded, LightModeRounded } from '@mui/icons-material'
 
 class Editor extends React.Component {
   static propTypes = {
@@ -40,13 +41,15 @@ class Editor extends React.Component {
     autoSave: PropTypes.bool.isRequired,
     saveOnClose: PropTypes.bool.isRequired,
     editorAutocomplete: PropTypes.bool.isRequired,
+    toggleOptionalFeature: PropTypes.func.isRequired,
     toggleConfiguration: PropTypes.func.isRequired,
     keyboardHandler: PropTypes.string,
     isDarkMode: PropTypes.bool.isRequired,
     featureFlags: PropTypes.objectOf(PropTypes.bool).isRequired,
     activeTab: PropTypes.string,
     onNavigate: PropTypes.func.isRequired,
-    hasConfigurationWithSameName: PropTypes.func.isRequired
+    hasConfigurationWithSameName: PropTypes.func.isRequired,
+    syncDarkMode: PropTypes.bool.isRequired
   }
 
   constructor(props) {
@@ -109,6 +112,10 @@ class Editor extends React.Component {
       values[id] = value
     }
     this.handleUpdate('values', values)
+  }
+
+  toggleDarkMode() {
+    this.props.toggleOptionalFeature('preferDarkMode')
   }
 
   toggle() {
@@ -412,6 +419,18 @@ class Editor extends React.Component {
             >
               Delete
             </Button>
+
+            {!this.props.syncDarkMode && (
+              <Button
+                sx={{ textTransform: 'none', padding: 0, margin: 0 }}
+                // variant="contained"
+                onClick={(event) => this.toggleDarkMode()}
+                disabled={disableButtonsIfNew}
+              >
+                {/* <DarkModeRounded /> */}
+                {!this.props.isDarkMode ? <DarkModeRounded /> : <LightModeRounded />}
+              </Button>
+            )}
           </Stack>
 
           <Popup

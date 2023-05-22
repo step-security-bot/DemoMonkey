@@ -28,6 +28,8 @@ import WarningBox from '../shared/WarningBox'
 import Page from '../shared/Page'
 import JSZip from 'jszip'
 import { logger } from '../../helpers/logger'
+import { ThemeProvider } from '@emotion/react'
+import { createTheme } from '@mui/material'
 
 /* The OptionsPageApp will be defined below */
 class App extends React.Component {
@@ -364,7 +366,9 @@ class App extends React.Component {
                 hookIntoAjax: this.props.settings.optionalFeatures.hookIntoAjax,
                 webRequestHook: this.props.settings.optionalFeatures.webRequestHook
               }}
+              toggleOptionalFeature={(feature) => this.toggleOptionalFeature(feature)}
               isDarkMode={this._getDarkMode()}
+              syncDarkMode={this.props.settings.optionalFeatures.syncDarkMode}
               activeTab={segments[2]}
               onNavigate={(target) =>
                 this.navigateTo('configuration/' + configuration.id + '/' + target)
@@ -463,26 +467,35 @@ class App extends React.Component {
       return c
     })
 
+    const mainTheme = createTheme({
+      palette: {
+        mode: this._getDarkMode() ? 'dark' : 'light'
+      }
+    })
+
     return (
-      <Page
-        className={`main-grid${withWarning}`}
-        preferDarkMode={this.props.settings.optionalFeatures.preferDarkMode}
-        syncDarkMode={this.props.settings.optionalFeatures.syncDarkMode}
-      >
-        {this._renderWarningBox(withWarning)}
-        <div className="navigation">
-          <Navigation
-            onNavigate={(target) => this.navigateTo(target)}
-            onUpload={(upload) => this.uploadConfiguration(upload)}
-            onDelete={(configuration) => this.deleteConfiguration(configuration)}
-            items={configurations}
-            onDownloadAll={(event) => this.downloadAll(event)}
-            active={activeItem}
-            showLogs={this.props.settings.optionalFeatures.writeLogs === true}
-          />
-        </div>
-        <div className="current-view">{this.getCurrentView()}</div>
-      </Page>
+      <ThemeProvider theme={mainTheme}>
+        <Page
+          className={`main-grid${withWarning}`}
+          preferDarkMode={this.props.settings.optionalFeatures.preferDarkMode}
+          syncDarkMode={this.props.settings.optionalFeatures.syncDarkMode}
+          onToggleOptionalFeature={(feature) => this.toggleOptionalFeature(feature)}
+        >
+          {this._renderWarningBox(withWarning)}
+          <div className="navigation">
+            <Navigation
+              onNavigate={(target) => this.navigateTo(target)}
+              onUpload={(upload) => this.uploadConfiguration(upload)}
+              onDelete={(configuration) => this.deleteConfiguration(configuration)}
+              items={configurations}
+              onDownloadAll={(event) => this.downloadAll(event)}
+              active={activeItem}
+              showLogs={this.props.settings.optionalFeatures.writeLogs === true}
+            />
+          </div>
+          <div className="current-view">{this.getCurrentView()}</div>
+        </Page>
+      </ThemeProvider>
     )
   }
 }
