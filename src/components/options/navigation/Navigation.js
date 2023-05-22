@@ -23,6 +23,7 @@ import TreeView from '@mui/lab/TreeView'
 import TreeItem from '@mui/lab/TreeItem'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import { Avatar, Link } from '@mui/material'
 
 class Navigation extends React.Component {
   static propTypes = {
@@ -185,6 +186,20 @@ class Navigation extends React.Component {
     return (
       <div>
         <div className="navigation-header">
+          <Link href="https://demomonkey.net/" underline="none" target="_blank" rel="noopener">
+            <div className="navigation-logo">
+              <Avatar
+                variant="circular"
+                alt="Remy Sharp"
+                src="./icons/monkey_48.png"
+                sx={{ width: 30, height: 30 }}
+                style={{
+                  border: '3px solid rgba(56, 61, 81,0.7)'
+                }}
+              />
+              <span>DemoMonkey</span>
+            </div>
+          </Link>
           <NavigationHeader
             onUpload={this.props.onUpload}
             onDownloadAll={this.props.onDownloadAll}
