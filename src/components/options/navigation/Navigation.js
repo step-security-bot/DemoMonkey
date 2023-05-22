@@ -23,7 +23,7 @@ import TreeView from '@mui/lab/TreeView'
 import TreeItem from '@mui/lab/TreeItem'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import { Avatar, Link } from '@mui/material'
+import { Avatar, Link, TextField } from '@mui/material'
 
 class Navigation extends React.Component {
   static propTypes = {
@@ -190,7 +190,6 @@ class Navigation extends React.Component {
             <div className="navigation-logo">
               <Avatar
                 variant="circular"
-                alt="Remy Sharp"
                 src="./icons/monkey_48.png"
                 sx={{ width: 30, height: 30 }}
                 style={{
@@ -206,14 +205,21 @@ class Navigation extends React.Component {
             onNavigate={this.props.onNavigate}
             showLogs={this.props.showLogs}
           />
-          <input
-            type="text"
-            onChange={(event) => this.handleSearchUpdate(event)}
-            value={this.state.search}
-            placeholder="Search..."
-            className="searchBox"
-          />
+
+          <div className="search-container">
+            <TextField
+              label="Search"
+              id="search-input"
+              defaultValue="Small"
+              variant="filled"
+              size="small"
+              onChange={(event) => this.handleSearchUpdate(event)}
+              value={this.state.search}
+              fullWidth
+            />
+          </div>
         </div>
+        <div className="navigation-title">NAVIGATION</div>
         <div className="tree items">{this._safeRenderTree()}</div>
       </div>
     )
