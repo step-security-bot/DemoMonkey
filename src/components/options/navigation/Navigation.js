@@ -210,7 +210,6 @@ class Navigation extends React.Component {
             <TextField
               label="Search"
               id="search-input"
-              defaultValue="Small"
               variant="filled"
               size="small"
               onChange={(event) => this.handleSearchUpdate(event)}
