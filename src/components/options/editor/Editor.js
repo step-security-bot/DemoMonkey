@@ -425,7 +425,6 @@ class Editor extends React.Component {
                 sx={{ textTransform: 'none', padding: 0, margin: 0 }}
                 // variant="contained"
                 onClick={(event) => this.toggleDarkMode()}
-                disabled={disableButtonsIfNew}
               >
                 {/* <DarkModeRounded /> */}
                 {!this.props.isDarkMode ? <DarkModeRounded /> : <LightModeRounded />}
