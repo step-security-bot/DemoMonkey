@@ -93,6 +93,13 @@ class ItemHeader extends React.Component {
     return ''
   }
 
+  truncate(string, limit) {
+    if (string.length <= limit) {
+      return string
+    }
+    return string.slice(0, limit) + '...'
+  }
+
   render() {
     const style = Object.assign({}, this.props.style)
 
@@ -123,7 +130,7 @@ class ItemHeader extends React.Component {
             href={'#configuration/' + this.props.node.id}
             onClick={(event) => event.preventDefault()}
           >
-            {label}
+            {this.truncate(label, 16)}
           </a>
         </div>
         <div className="configuration-updated-at" style={style.timestamp}>

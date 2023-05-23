@@ -26,6 +26,8 @@ import FormControl from '@mui/material/FormControl'
 import CommandBuilder from '../../../commands/CommandBuilder'
 import ErrorCommand from '../../../commands/ErrorCommand'
 import Switch from '@mui/material/Switch'
+import { Button, Stack } from '@mui/material'
+import { DarkModeRounded, LightModeRounded } from '@mui/icons-material'
 
 class Editor extends React.Component {
   static propTypes = {
@@ -39,13 +41,15 @@ class Editor extends React.Component {
     autoSave: PropTypes.bool.isRequired,
     saveOnClose: PropTypes.bool.isRequired,
     editorAutocomplete: PropTypes.bool.isRequired,
+    toggleOptionalFeature: PropTypes.func.isRequired,
     toggleConfiguration: PropTypes.func.isRequired,
     keyboardHandler: PropTypes.string,
     isDarkMode: PropTypes.bool.isRequired,
     featureFlags: PropTypes.objectOf(PropTypes.bool).isRequired,
     activeTab: PropTypes.string,
     onNavigate: PropTypes.func.isRequired,
-    hasConfigurationWithSameName: PropTypes.func.isRequired
+    hasConfigurationWithSameName: PropTypes.func.isRequired,
+    syncDarkMode: PropTypes.bool.isRequired
   }
 
   constructor(props) {
@@ -108,6 +112,10 @@ class Editor extends React.Component {
       values[id] = value
     }
     this.handleUpdate('values', values)
+  }
+
+  toggleDarkMode() {
+    this.props.toggleOptionalFeature('preferDarkMode')
   }
 
   toggle() {
@@ -304,6 +312,7 @@ class Editor extends React.Component {
   renderConfiguration() {
     const current = this.state.currentConfiguration
     const hiddenIfNew = current.id === 'new' ? { display: 'none' } : {}
+    const disableButtonsIfNew = current.id === 'new'
     const tmpConfig = new Configuration(
       current.content,
       this.props.getRepository(),
@@ -320,8 +329,6 @@ class Editor extends React.Component {
     const hotkeyOptions = Array.from(Array(9).keys())
 
     const currentHotkeys = current.hotkeys ? current.hotkeys.filter((e) => e !== null) : []
-
-    console.log('CH', currentHotkeys)
 
     const autosave = current.id === 'new' ? false : this.props.autoSave
 
@@ -374,12 +381,57 @@ class Editor extends React.Component {
               </Select>
             </FormControl>
           </div>
-          <button
-            className={'save-button ' + (this.state.unsavedChanges ? '' : 'disabled')}
-            onClick={() => this.onBeforeSave()}
-          >
-            Save
-          </button>
+          <Stack spacing={1} direction="row" sx={{ pl: 1 }}>
+            <Button
+              onClick={() => this.onBeforeSave()}
+              disabled={!this.state.unsavedChanges}
+              variant="contained"
+              color="success"
+              sx={{ textTransform: 'none' }}
+            >
+              Save
+            </Button>
+
+            <Button
+              sx={{ textTransform: 'none' }}
+              variant="contained"
+              onClick={(event) => this.handleClick(event, 'copy')}
+              color="primary"
+              disabled={disableButtonsIfNew}
+            >
+              Duplicate
+            </Button>
+            <Button
+              variant="contained"
+              sx={{ textTransform: 'none' }}
+              onClick={(event) => this.handleClick(event, 'download')}
+              color="primary"
+              disabled={disableButtonsIfNew}
+            >
+              Download
+            </Button>
+            <Button
+              sx={{ textTransform: 'none' }}
+              variant="contained"
+              onClick={(event) => this.onBeforeDelete()}
+              color="error"
+              disabled={disableButtonsIfNew}
+            >
+              Delete
+            </Button>
+
+            {!this.props.syncDarkMode && (
+              <Button
+                sx={{ textTransform: 'none', padding: 0, margin: 0 }}
+                // variant="contained"
+                onClick={(event) => this.toggleDarkMode()}
+              >
+                {/* <DarkModeRounded /> */}
+                {!this.props.isDarkMode ? <DarkModeRounded /> : <LightModeRounded />}
+              </Button>
+            )}
+          </Stack>
+
           <Popup
             open={this.state.showSavePopup}
             onCancel={(event) => this.onCancelSave(event)}
@@ -392,27 +444,7 @@ class Editor extends React.Component {
               </span>
             }
           />
-          <button
-            className="copy-button"
-            style={hiddenIfNew}
-            onClick={(event) => this.handleClick(event, 'copy')}
-          >
-            Duplicate
-          </button>
-          <button
-            className="download-button"
-            style={hiddenIfNew}
-            onClick={(event) => this.handleClick(event, 'download')}
-          >
-            Download
-          </button>
-          <button
-            className="delete-button"
-            style={hiddenIfNew}
-            onClick={(event) => this.onBeforeDelete()}
-          >
-            Delete
-          </button>
+
           <Popup
             open={this.state.showDeletePopup}
             onCancel={(event) => this.onCancelDelete(event)}

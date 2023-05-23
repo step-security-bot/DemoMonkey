@@ -38,6 +38,10 @@ class App extends React.Component {
     }
   }
 
+  toggleDarkMode() {
+    this.props.actions.toggleDarkMode(true)
+  }
+
   toggleLiveMode() {
     this.props.actions.toggleLiveMode()
   }
@@ -119,6 +123,9 @@ const PopupPageApp = connect(
       },
       toggleLiveMode: () => {
         dispatch({ type: 'TOGGLE_LIVE_MODE' })
+      },
+      toggleDarkMode: () => {
+        dispatch({ type: 'TOGGLE_OPTIONAL_FEATURE' })
       }
     }
   })

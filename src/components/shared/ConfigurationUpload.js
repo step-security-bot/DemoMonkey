@@ -24,6 +24,7 @@ import {
   DialogTitle,
   TextField
 } from '@mui/material'
+import { FileUploadRounded } from '@mui/icons-material'
 
 class ConfigurationUpload extends React.Component {
   static propTypes = {
@@ -142,6 +143,7 @@ class ConfigurationUpload extends React.Component {
           style={{ textTransform: 'none', fontSize: '12px', lineHeight: '14px' }}
           href={'#configuration/upload'}
           onClick={(event) => this.showUploadDialog(event)}
+          startIcon={<FileUploadRounded />}
         >
           Upload
         </Button>
