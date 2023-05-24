@@ -87,6 +87,9 @@ try {
         return
       }
       scope.chrome.tabs.get(tabId, (tab) => {
+        if (!tab.url || !tab.url.startsWith('http')) {
+          return
+        }
         if (tab.url) {
           logger('debug', 'Trying to inject for', tabId, tab.url).write()
           scope.chrome.scripting.executeScript(
