@@ -28,6 +28,7 @@ import 'ace-builds/src-noconflict//theme-merbivore'
 import 'ace-builds/src-noconflict/ext-searchbox'
 
 import '../editor/ace/mnky'
+import { Button, Stack } from '@mui/material'
 
 class Settings extends React.Component {
   static propTypes = {
@@ -167,9 +168,14 @@ class Settings extends React.Component {
                   auto-save while you edit it.
                 </p>
                 <p>
-                  <button className="save-button" onClick={() => this.saveBaseTemplate()}>
+                  <Button
+                    onClick={() => this.saveBaseTemplate()}
+                    variant="contained"
+                    color="success"
+                    sx={{ textTransform: 'none' }}
+                  >
                     Save
-                  </button>
+                  </Button>
                   <span
                     style={{
                       display:
@@ -219,9 +225,14 @@ class Settings extends React.Component {
                     when an @include[] in your demo configuration matches.
                   </p>
                   <p>
-                    <button className="save-button" onClick={() => this.saveAnalyticsSnippet()}>
+                    <Button
+                      onClick={() => this.saveAnalyticsSnippet()}
+                      variant="contained"
+                      color="success"
+                      sx={{ textTransform: 'none' }}
+                    >
                       Save
-                    </button>
+                    </Button>
                     <span
                       style={{
                         display:
@@ -254,17 +265,24 @@ class Settings extends React.Component {
                 Change this value if you experience performance issues with DemoMonkey. A higher
                 value means less frequent updates. Default is 100.
               </label>
-              <b>Update interval: </b>
-              <input
-                type="number"
-                min="50"
-                max="1000"
-                value={this.state.monkeyInterval}
-                onChange={(e) => this.updateMonkeyInterval(e)}
-              />
-              <button className="save-button" onClick={(e) => this.saveMonkeyInterval(e)}>
-                save
-              </button>
+              <p>
+                <b>Update interval: </b>
+                <input
+                  type="number"
+                  min="50"
+                  max="1000"
+                  value={this.state.monkeyInterval}
+                  onChange={(e) => this.updateMonkeyInterval(e)}
+                />
+              </p>
+              <Button
+                onClick={(e) => this.saveMonkeyInterval(e)}
+                variant="contained"
+                color="success"
+                sx={{ textTransform: 'none' }}
+              >
+                Save
+              </Button>
               <h2>Permissions</h2>
               For DemoMonkey to work optimal you have to grant permissions to access all websites.
               <div className="toggle-group" id="toggle-beta_configSync">
@@ -282,14 +300,36 @@ class Settings extends React.Component {
               If you can not revoke permissions from here, go to the extensions page, choose Demo
               Monkey, click on <i>Details</i> and there set <i>Site Access</i> to <i>On click</i>
               <h2>Backup</h2>
-              You can always open the <a href="backup.html">backup page</a> to download your files
-              or manipulate your settings. Please use with caution!
-              <button className="save-button" onClick={(event) => this.props.onDownloadAll(event)}>
-                Download all configurations
-              </button>
-              <button className="delete-button" onClick={(event) => this.onBeforeDeleteAll(event)}>
-                Download & Delete all configurations
-              </button>
+              <p>
+                You can always open the <a href="backup.html">backup page</a> to download your files
+                or manipulate your settings. Please use with caution!
+              </p>
+              <Stack spacing={1} direction="row" sx={{ pl: 1 }}>
+                <Button
+                  onClick={(event) => this.props.onDownloadAll(event)}
+                  variant="contained"
+                  color="success"
+                  sx={{ textTransform: 'none' }}
+                >
+                  Download all configurations
+                </Button>
+                <Button
+                  sx={{ textTransform: 'none' }}
+                  variant="contained"
+                  onClick={(event) => this.onBeforeDeleteAll(event)}
+                  color="error"
+                >
+                  Download & Delete all configurations
+                </Button>
+                <Button
+                  sx={{ textTransform: 'none' }}
+                  variant="contained"
+                  onClick={(event) => this.onBeforeReset(event)}
+                  color="error"
+                >
+                  Reset DemoMonkey
+                </Button>
+              </Stack>
               <Popup
                 title="Please Confirm"
                 text={<span>Do you really want to delete all configurations?</span>}
@@ -297,9 +337,6 @@ class Settings extends React.Component {
                 onCancel={(event) => this.onCancelDeleteAll(event)}
                 onConfirm={(event) => this.onDeleteAll(event)}
               />
-              <button className="delete-button" onClick={(event) => this.onBeforeReset(event)}>
-                Reset DemoMonkey
-              </button>
               <Popup
                 title="Reset DemoMonkey"
                 text={

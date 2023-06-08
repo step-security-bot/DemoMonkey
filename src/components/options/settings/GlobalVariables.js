@@ -15,6 +15,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Variable from '../../../models/Variable'
 import VariableEditor from '../../shared/Variable'
+import { Button, Stack } from '@mui/material'
 
 class GlobalVariables extends React.Component {
   static propTypes = {
@@ -127,12 +128,25 @@ class GlobalVariables extends React.Component {
             />
           )
         })}
-        <button className="save-button" onClick={() => this.addVariable()}>
-          Add Variable
-        </button>
-        <button className="save-button" onClick={() => this.save()}>
-          Save
-        </button>
+        <Stack spacing={1} direction="row" sx={{ pl: 1 }}>
+          <Button
+            onClick={() => this.addVariable()}
+            variant="contained"
+            color="primary"
+            sx={{ textTransform: 'none' }}
+          >
+            Add Variable
+          </Button>
+          <Button
+            onClick={() => this.save()}
+            variant="contained"
+            color="success"
+            sx={{ textTransform: 'none' }}
+          >
+            Save
+          </Button>
+        </Stack>
+
         <span style={{ display: unsaved }} className="unsaved-warning">
           (Unsaved Changes)
         </span>
