@@ -207,7 +207,7 @@ class Navigation extends React.Component {
             <TextField
               label="Search"
               id="search-input"
-              variant="filled"
+              variant="outlined"
               size="small"
               onChange={(event) => this.handleSearchUpdate(event)}
               value={this.state.search}
