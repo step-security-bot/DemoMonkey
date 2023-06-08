@@ -99,7 +99,8 @@ class Editor extends React.Component {
 
   handleHotkeysChange(event) {
     console.log(event)
-    this.handleUpdate('hotkeys', event.target.value, null)
+    // this.handleUpdate('hotkeys', event.target.value, null)
+    this.handleUpdate('hotkeys', event, null)
   }
 
   updateVariable(id, value) {
@@ -335,8 +336,9 @@ class Editor extends React.Component {
     return (
       <div className="editor">
         <div className="title">
-          <div className="toggle-configuration" style={hiddenIfNew}>
+          <div className="toggle-configuration">
             <Switch
+              disabled={disableButtonsIfNew}
               checked={!!this.props.currentConfiguration.enabled}
               onChange={() => {
                 this.toggle()
@@ -345,12 +347,15 @@ class Editor extends React.Component {
               width={48}
             />
           </div>
-          <b>Name</b>
-          <input
-            type="text"
-            className="text-input"
-            id="configuration-title"
+
+          <TextField
+            sx={{ flex: 7 }}
+            id="outlined-basic"
+            label="Please provide a name"
+            variant="outlined"
+            size="small"
             placeholder="Please provide a name. You can use slashes (/) in it to create folders."
+            type="text"
             value={current.name}
             onChange={(event) => this.handleUpdate('name', event.target.value, event)}
           />
