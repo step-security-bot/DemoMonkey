@@ -159,8 +159,8 @@ class Navigation extends React.Component {
     try {
       return (
         <TreeView
-          defaultCollapseIcon={<ExpandMoreIcon />}
-          defaultExpandIcon={<ChevronRightIcon />}
+          defaultCollapseIcon={<ExpandMoreIcon color="info" />}
+          defaultExpandIcon={<ChevronRightIcon color="primary" />}
           onNodeToggle={(event, nodeId) => this.onToggle('toggle', nodeId)}
           onNodeSelect={(event, nodeId) => this.onToggle('select', nodeId)}
         >
@@ -192,9 +192,6 @@ class Navigation extends React.Component {
                 variant="circular"
                 src="./icons/monkey_48.png"
                 sx={{ width: 30, height: 30 }}
-                style={{
-                  border: '3px solid rgba(56, 61, 81,0.7)'
-                }}
               />
               <span>DemoMonkey</span>
             </div>

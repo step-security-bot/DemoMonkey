@@ -64,13 +64,13 @@ export default {
       },
       header: {
         folder: {
-          display: 'inline-block',
+          // display: 'inline-block',
           verticalAlign: 'top',
           color: 'var(--navigation-text-color)'
           // width: 'calc(100% - 24px)'
         },
         item: {
-          display: 'inline-block',
+          // display: 'inline-block',
           verticalAlign: 'top',
           color: 'var(--navigation-text-color)',
           width: '100%'
@@ -86,16 +86,16 @@ export default {
         },
         title: {
           lineHeight: '24px',
-          verticalAlign: 'middle',
-          display: 'inline-block',
-          width: 'calc(100% - 80px)'
+          verticalAlign: 'middle'
+          // display: 'inline-block'
+          // width: 'calc(100% - 80px)'
         },
         timestamp: {
           color: '#888888',
           fontSize: '80%',
           display: 'inline-block',
-          textAlign: 'right',
-          width: '68px'
+          textAlign: 'right'
+          // width: '68px'
         }
       },
       loading: {
