@@ -362,6 +362,7 @@ class Editor extends React.Component {
           <div className="select-hotkeys">
             <FormControl sx={{ m: 1, width: '95%' }} size="small">
               <Autocomplete
+                disabled={disableButtonsIfNew}
                 multiple
                 limitTags={2}
                 size="small"
