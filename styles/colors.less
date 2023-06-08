@@ -1,75 +1,132 @@
-@base: #efefef;
-@success: #067f84;
-@danger: #952613;
-@warning: #ff9632;
-@download: #d8caa8;
-@darkBase: #2a2e3f;
-@navigationBase: #141728;
-@scrollBackround: #141728;
+@success: #15B167;
+@error: #D85555;
+@warning: #F19F3D;
+@accentNormal: #4378FF;
+@darkNormal: #1A1E31;
+
+@light-primary-color: #FFFFFF;
+@light-secondary-color: #F2F5F7;
+@light-accent-color: #3c7ec6;
+@light-accent-color-light: #5799e0;
+
+@light-success-color:#15B167;
+@light-error-color:#D85555;
+@light-warning-color: #F19F3D;
+
+@light-text-color: #141728;
+@light-subtitle-color: #d2d2d2; 
+@light-heading-color: #141728;
+
+
+@dark-primary-color: #1A1E31;
+@dark-secondary-color: #141728;
+@dark-accent-color: #3c7ec6;
+@dark-accent-color-light: #5799e0;
+
+@dark-success-color:#15B167;
+@dark-error-color:#D85555;
+@dark-warning-color: #F19F3D;
+
+@dark-text-color: #141728;
+@dark-subtitle-color: #1f233b;
+@dark-heading-color: #1A1E31;
+
+
+/*************************************
+LIGHT MODE THEME
+*************************************/
 
 .light-mode {
   /* Main Theme */
+  --background-color: @light-secondary-color;
 
-  --primary-bg-color: #9d9fa7;
-  --secondary-bg-color: #d4d4d4;
-
-  --mode-color: #000;
-  --mode-text-color: @darkBase;
-  --base-color: #fff;
-  --base-link-color: #1e8179;
-  --hover-link-color: #11c8b6;
-  --highlight-background-color: #444;
-
-  /* Scroll Bar */
-
-  --scroll-bar-color: #1aa89c;
-  --scroll-border-color: @base;
-  --scroll-background: @base;
-  --navigation-scroll-bar-color: #1aa89c;
-  --navigation-scroll-border-color: #111041;
-  --navigation-scroll-background: @scrollBackround;
+  /* Logo */
+  --logo-text-color: @light-accent-color;
+  --logo-border-color: #fff;
 
   /* Box */
-  --box-background: #e3e3e3;
-  --box-shadow: #ccc;
+  --box-background: @light-primary-color;
+  --box-shadow: #d2d2d2;
+
+  /* Scroll Bar */
+  --scroll-bar-color: @light-accent-color;
+  --scroll-border-color: #eef2f7;
+  --scroll-background-color: #fff;
+  --navigation-scroll-bar-color: @light-accent-color;
+  --navigation-scroll-border-color: #eef2f7;
+  --navigation-scroll-background: #fff;
 
   /* Navigation */
-  --navigation-background: @navigationBase;
-  --navigation-read-only: lighten(@darkBase, 20%);
+  --navigation-background: @light-primary-color;
+  --navigation-read-only: lighten(#2a2e3f, 20%);
   --navigation-item-color: #222;
   --navigation-active-color: #161e38;
   --navigation-hover-color: #1e2849;
-  --navigation-text-color: #eee;
-  --navigation-subtitle-text: #3a4374;
-  --help-text-color: #aaa;
-  --warning-color: @warning;
-  --danger-color: lighten(@danger, 20%);
-  --warning-background-color: darken(@warning, 37%);
-  --success-color: lighten(@success, 20%);
-  --navigation-button-background-color: @darkBase;
+  --navigation-text-color: @light-text-color;
+  --navigation-subtitle-color: @light-subtitle-color;
+  
+  --navigation-button-background-color: #2a2e3f;
 
-  /* Button */
-  --button-background-color: #d5d5d5;
-  --button-active-color: #067f84;
-  --button-hover-text-color: #efefef;
-  --button-hover-color: #2b3555;
+  --navigation-collapse-background-color: rgba(38, 40, 64, 0.1);
+  
+  /* Links */
+  --link-color: @light-accent-color-light;
+  --link-color-hover: #3a6fa7;
+  
+  /* Error Notifications */
+  --error-background-color: @error;  
+  --error-text-color: #eee;
+  
+  /* Warning Notifications */
+  --warning-background-color: #F19F3D;
+  --warning-text-color: #eee;
+  
+  /* Success Notifications */
+  --success-background-color: @success;
+  --success-text-color: #eee;
+
+  /* Context Menu (Right Click on Navigation) */
+  --context-menu-background-color: #f0f0f0;
+  --context-menu-text-color: #1a1e31;
+
+  /* Content */ 
+  --content-background-color: #f0f0f0;
+  --content-text-color: #1a1e31;
 
   /* Input */
-  --input-focus-visible: #b9b3b3;
-  --input-background-color: #d5d5d5;
+  --input-focus-visible: #d4d2d2;
+  --input-background-color: #f0f0f0;
+
+
+  /* Button */
+  --button-background-color: #f3f5f7;
+  --button-text-color: #768aa1;
+  --button-active-color: @dark-accent-color;
+  --button-hover-color: darken(@dark-accent-color, 10%);
+  --button-hover-text-color: #fff;
+  
+
+  /* Action Buttons */
+  --action-button-color: #f3f5f7;
+  --action-button-active: #2E585A;
+  --action-button-hover: #242E44;
+  --action-button-text-color: #6a819b;
 
   /* Search */
+  --search-background-color: #1b1e32;
+  --search-focus-visible: #222741;
+  --search-text-color: #ccc;
   --navigation-search-background-color: #1b1e32;
   --navigation-search-focus-visible: #222741;
   --navigation-search-text-color: #ccc;
-  --popup-search-background-color: #d5d5d5;
-  --popup-search-focus-visible: #b9b3b3;
-  --popup-search-text-color: #1b1e32;
+  --popup-search-background-color: #f3f5f7;
+  --popup-search-focus-visible: #e5e7e9;
+  --popup-search-text-color: #ccc;
 
   /* Editor */
-  --editor-title-background: @base;
-  --editor-tabs-background: @base;
-  --editor-ace-background: @base;
+  --editor-title-background: #0a0c1b;
+  --editor-tabs-background: #0a0c1b;
+  --editor-ace-background: #0a0c1b;
   --editor-ace-gutter-background: #ccc;
   --editor-comment-color: #a50;
   --editor-group-color: #a00;
@@ -84,53 +141,84 @@
   --table-2n-color: #f0f0f0;
 }
 
-.dark-mode {
+
+/*************************************
+DARK MODE THEME
+*************************************/
+
+.dark-mode {  
   /* Main Theme */
+  --background-color: @dark-primary-color;
 
-  --primary-bg-color: #202236;
-  --secondary-bg-color: #262840;
-  
-  --mode-color: #000;
-  --mode-text-color: #eee;
-  --base-color: @darkBase;
-  --base-link-color: #17c9b7;
-  --hover-link-color: #1e8179;
-  --highlight-background-color: #444;
-
-  /* Scroll Bar */
-  --scroll-bar-color: #1aa89c;
-  --scroll-border-color: #111041;
-  --scroll-background: @scrollBackround;
-  --navigation-scroll-bar-color: #1aa89c;
-  --navigation-scroll-border-color: #111041;
-  --navigation-scroll-background: @scrollBackround;
+  /* Logo */
+  --logo-text-color: @dark-accent-color;
+  --logo-border-color: rgba(32,28,88,1);
 
   /* Box */
-  --box-background: #202236;
+  --box-background: @dark-secondary-color;
   --box-shadow: #0a0c1b;
 
+  /* Scroll Bar */
+  --scroll-bar-color: @dark-accent-color;
+  --scroll-border-color: #1f2437;
+  --scroll-background-color: #202236;
+  --navigation-scroll-bar-color: @dark-accent-color;
+  --navigation-scroll-border-color: #1f2437;
+  --navigation-scroll-background: #202236;
+
   /* Navigation */
-  --navigation-background: @navigationBase;
-  --navigation-read-only: lighten(@darkBase, 20%);
+  --navigation-background: #141728;
+  --navigation-read-only: lighten(#2a2e3f, 20%);
   --navigation-item-color: #222;
   --navigation-active-color: #161e38;
   --navigation-hover-color: #1e2849;
   --navigation-text-color: #eee;
-  --navigation-subtitle-text: #3a4374;
-  --help-text-color: #aaa;
-  --warning-color: @warning;
-  --danger-color: lighten(@danger, 20%);
-  --warning-background-color: darken(@warning, 37%);
-  --success-color: lighten(@success, 20%);
+  --navigation-subtitle-color: @dark-subtitle-color;
+  
+  
+  --navigation-button-background-color: #2a2e3f;
 
-  /* Button */
-  --button-background-color: #161e38;
-  --button-active-color: #067f84;
-  --button-hover-color: #2b3555;
+  --navigation-collapse-background-color: #191D34;
+  
+  /* Links */
+  --link-color: @dark-accent-color-light;
+  --link-color-hover: #b8c2ea;
+  
+  /* Error Notifications */
+  --error-background-color: #D85555;  
+  --error-text-color: #eee;
+  
+  /* Warning Notifications */
+  --warning-background-color: #F19F3D;
+  --warning-text-color: #eee;
+  
+  /* Success Notifications */
+  --success-background-color: @success;
+  --success-text-color: #eee;
+
+  /* Context Menu (Right Click on Navigation) */
+  --context-menu-background-color: #1a1e31;
+  --context-menu-text-color: #eee;
+
+  /* Content */ 
+  --content-background-color: #1a1e31;
+  --content-text-color: #eee;
 
   /* Input */
   --input-focus-visible: #222741;
   --input-background-color: #1b1e32;
+
+  /* Button */
+  --button-background-color: #161e38;
+  --button-active-color: @dark-accent-color;
+  --button-hover-color: #2b3555;
+  --button-text-color: #fff;
+
+  /* Action Buttons */
+  --action-button-color: #252F44;
+  --action-button-active: #2E585A;
+  --action-button-hover: #242E44;
+  --action-button-text-color: #8bb6e6;
 
   /* Search */
   --search-background-color: #1b1e32;
@@ -144,9 +232,9 @@
   --popup-search-text-color: #ccc;
 
   /* Editor */
-  --editor-title-background: @navigationBase;
-  --editor-tabs-background: @navigationBase;
-  --editor-ace-background: @navigationBase;
+  --editor-title-background: #141728;
+  --editor-tabs-background: #141728;
+  --editor-ace-background: #141728;
   --editor-ace-gutter-background: #141b32;
   --editor-comment-color: #09ffe7;
   --editor-group-color: #0b0;
@@ -159,4 +247,12 @@
   --editor-url-color: #0cc8ed;
   --table-header-color: #666;
   --table-2n-color: #333;
+
+
+  /* Other */
+  --help-text-color: #aaa;
+  --highlight-background-color: #444;
+
+
+  
 }

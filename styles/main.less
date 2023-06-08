@@ -38,7 +38,7 @@ html {
 }
 
 html,
-body,
+body, 
 .app-container {
   margin: 0;
   padding: 0;
@@ -52,7 +52,7 @@ body,
   height: 100%;
   min-height: 100%;
   overflow: hidden;
-  background-color: var(--secondary-bg-color);
+  background-color: var(--background-color);
 }
 
 .current-view {
@@ -62,7 +62,7 @@ body,
 
 .content {
   height: 100%;
-  color: var(--mode-text-color);
+  color: var(--content-text-color);
   border-radius: 10px;
 
   .tabs {
@@ -77,8 +77,8 @@ body,
 
 .no-variables {
   background: var(--warning-background-color);
-  border: 1px solid var(--warning-color);
-  color: var(--warning-color);
+  border: 1px solid var(--warning-text-color);
+  color: var(--warning-text-color);
   margin: 1em;
   padding: 1em;
 
@@ -132,17 +132,17 @@ body,
 }
 
 a {
-  color: var(--base-link-color);
+  color: var(--link-color);
 
   &:hover {
-    color: var(--hover-link-color);
+    color: var(--link-color-hover);
   }
 }
 
 .toggle-group {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 0px 10px;
   background-color: var(--box-background);
   margin: 5px 0;
   border-radius: 7px;
@@ -168,7 +168,7 @@ a {
   margin-bottom: 1em;
 
   & label {
-    color: var(--success-color);
+    color: var(--success-text-color);
     display: block;
     font-size: 110%;
     font-weight: bold;
@@ -182,10 +182,8 @@ a {
 
 .warning-box {
   background: var(--warning-background-color);
-  border: 1px solid var(--warning-color);
-  color: var(--warning-color);
+  color: var(--warning-text-color);
   margin: 8px;
-  margin-bottom: 0;
   padding: 10px;
   border-radius: 7px;
 
@@ -196,19 +194,19 @@ a {
     left: 0;
     margin: 0;
     border: 0;
-    border-bottom: 2px solid var(--warning-color);
+    border-bottom: 2px solid var(--warning-text-color);
     width: 100%;
   }
 }
 
 .unsaved-warning {
-  color: @danger;
+  color: --error-background-color;
 }
 
 .error-box {
-  background: lighten(@danger, 57%);
-  border: 1px solid @danger;
-  color: @danger;
+  background: lighten(@error, 57%);
+  border: 1px solid --error-background-color;
+  color: --error-background-color;
   margin: 8px;
   margin-bottom: 0;
   margin-top: 0;
@@ -253,10 +251,10 @@ a {
 }
 
 .connection-status-failed {
-  color: var(--danger-color);
+  color: var(--error-text-color);
   font-weight: bold;
 }
 
 .connection-status-connected {
-  color: var(--success-color);
+  color: var(--success-text-color);
 }

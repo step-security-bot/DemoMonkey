@@ -5,7 +5,7 @@
 }
 
 .navigation {
-  background: var(--primary-bg-color);
+  background: var(--navigation-background);
   flex-basis: 300px;
   min-width: 300px;
   width: 300px;
@@ -29,18 +29,18 @@
 
   .context-menu {
     position: fixed;
-    border: 1px solid var(--mode-text-color);
-    color: var(--mode-text-color);
+    border: 1px solid var(--context-menu-text-color);
+    color: var(--context-menu-text-color);
     margin: 4px;
     padding: 0;
-    background: var(--mode-color);
+    background: var(--context-menu-background-color);
     z-index: 999999;
     min-width: 100px;
 
     & > li {
       list-style-type: none;
       padding: 4px;
-      border-bottom: 1px solid var(--mode-text-color);
+      border-bottom: 1px solid var(--context-menu-text-color);
     }
   }
 
@@ -49,12 +49,19 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    flex: 1;
+    
 
-
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; 
+      width: 100%;
+    }
+    
     a {
       text-decoration: none;
-      color: #efefef;
+      font-size: 0.9rem;
+      color: var(--navigation-text-color);
     }
 
     .title-group {
@@ -81,7 +88,7 @@
 
         &.delete-configuration {
           position: absolute;
-          top: 0;
+          top: 2px;
           right: 0;
           color: #989797;
           height: 20px;
@@ -94,7 +101,7 @@
             transition: 0.3s;
             color: #eaeaea;
             border-radius: 20px;
-            background-color: #be2626;
+            background-color: var(--error-background-color);
           }
         }
 
@@ -118,7 +125,7 @@
       }
 
       & > time {
-        color: var(--navigation-subtitle-text);
+        color: var( --navigation-subtitle-color);
         font-weight: bold;
         text-transform: uppercase;
         font-size: 0.7rem;
@@ -148,12 +155,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 0;
+    padding: 20px 0;
+    
+    .MuiAvatar-root {
+      border: 3px solid var(--logo-border-color);
+    }
+
     span {
       padding: 0px 5px;
       font-size: 14px;
       letter-spacing: 2px;
-      color: #ccc;
+      color: var(--logo-text-color);
       font-weight: 300;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
@@ -163,7 +175,7 @@
     padding: 15px 30px 3px 30px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #3e3f4a;
+    color: var(--navigation-subtitle-color);
     font-weight: bold;
   }
 
@@ -173,16 +185,22 @@
     background-color: var(--navigation-active-background);
 
     a {
-      color: #f0f0f0;
+      // color: var(--navigation-text-color);
+      // background-color: var(--navigation-button-background-color);
+      // color: #0ea5e9;
+      // background-color: rgba(14,165,233,.1);
+      color: var(--action-button-text-color);
+      background-color: var(--action-button-color);
+
+
       display: flex;
       font-weight: bold;
-      padding: 8px;
+      // padding: 8px;
       text-align: center;
       text-decoration: none;
       border-radius: 7px;
       margin: 4px;
-      background-color: var(--navigation-button-background-color);
-
+      
       &:hover {
         background-color: var(--button-hover-color);
         color: var(--button-hover-text-color);
@@ -209,7 +227,7 @@
 
     .MuiTreeItem-root[aria-expanded="true"]{
       // background-color: #1853e6;
-      background-color: rgba(38, 40,64, .7);
+      background-color: var(--navigation-collapse-background-color);
       border-radius: 7px;
       margin-bottom: 5px;
     }

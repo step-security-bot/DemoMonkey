@@ -2,25 +2,25 @@
 
 .editor {
   height: calc(100% - 140px);
-  color: var(--mode-text-color);
+  color: var(--content-text-color);
 
   .editor-box {
     height: 100%;
 
     & > .ace_editor {
-      background-color: var(--primary-bg-color);
+      background-color: var(--box-background);
       height: 100%;
       border-radius: 10px;
 
       & > .ace_gutter {
-        background-color: var(--secondary-bg-color);
+        background-color: var(--box-background);
       }
     }
   }
 
   .title {
-    background-color: var(--primary-bg-color);
-    color: var(--mode-text-color);
+    background-color: var(--box-background);
+    color: var(--content-text-color);
     display: flex;
     padding: 3px 8px;
     align-items: center;
@@ -44,11 +44,11 @@
       & > div > div {
         border-radius: 7px;
         border: none;
-        background-color: var(--secondary-bg-color);
+        background-color: var(--input-background-color);
       }
 
       & #react-select-2-listbox > div > div {
-        background-color: var(--secondary-bg-color) !important;
+        background-color: var(--input-background-color) !important;
 
         &:hover {
           background-color: var(--input-focus-visible) !important;
@@ -61,7 +61,7 @@
     }
 
     input.text-input {
-      background: var(--secondary-bg-color);
+      background: var(--input-background-color);
       color: var(--mode-text);
       border-radius: 7px;
       flex-grow: 3;

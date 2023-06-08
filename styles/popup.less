@@ -1,6 +1,7 @@
 @import "colors";
 
 .popup-app {
+  height: 100%;
   max-width: 800px;
   min-width: 400px;
   width: 100%;
@@ -9,8 +10,8 @@
   body {
     min-width: 400px;
     padding: 10px;
-    background-color: var(--secondary-bg-color);
-    color: var(--mode-text-color);
+    background-color: var(--background-color);
+    color: var(--content-text-color);
     min-height: unset !important;
   }
 
@@ -40,9 +41,9 @@
   }
 
   .latest-configurations {
-    background-color: var(--secondary-bg-color);
-    border-bottom: 1px solid var(--secondary-bg-color);
-    border-top: 1px solid var(--secondary-bg-color);
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--background-color);
+    border-top: 1px solid var(--background-color);
     margin-top: 10px;
     padding: 10px;
     border-radius: 7px;
@@ -73,8 +74,8 @@
 
   input.text-input {
     background: var(--input-background-color);
-    color: var(--mode-text-color);
-    border: 1px solid var(--secondary-bg-color);
+    color: var(--content-text-color);
+    border: 1px solid var(--background-color);
     border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
     width: 280px;
@@ -145,19 +146,19 @@
 }
 
 .popup__btn--danger {
-  background-color: @danger;
+  background-color: --error-background-color;
   color: #fff;
 
   &:focus,
   &:hover {
-    background: lighten(@danger, 5%);
+    background: lighten(@error, 5%);
     border-color: #ccc;
-    box-shadow: 0 0 5px lighten(@danger, 20%);
+    box-shadow: 0 0 5px lighten(@error, 20%);
   }
 }
 
 .popup__box {
-  background-color: var(--secondary-bg-color);
+  background-color: var(--background-color);
   border: 1px solid #0eb7e1;
   border-radius: 5px;
   box-shadow: 0 5px 20px 0 rgba(126 137 140 / 20%);
@@ -171,14 +172,14 @@
 }
 
 .popup__box__header {
-  background: var(--secondary-bg-color);
-  color: var(--mode-text-color);
+  background: var(--background-color);
+  color: var(--content-text-color);
   padding: 15px 20px;
 }
 
 .popup__box--error {
   .popup__box__header {
-    background: @danger;
+    background: --error-background-color;
   }
 }
 
@@ -190,7 +191,7 @@
 }
 
 .popup__box__body {
-  color: var(--mode-text-color);
+  color: var(--content-text-color);
   font-size: 14px;
   line-height: 1.4;
   padding: 20px;

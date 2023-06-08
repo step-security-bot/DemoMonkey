@@ -9,7 +9,7 @@ button {
 }
 
 .save-button {
-  background-color: @success;
+  background-color: var(--success-background-color);
   color: #fff;
 
   &:hover {
@@ -49,14 +49,14 @@ button {
 }
 
 .delete-button {
-  background-color: @danger;
+  background-color: var(--error-background-color);
   color: #fff;
 
   &:focus,
   &:hover {
-    background: lighten(@danger, 5%);
+    background: lighten(@error, 5%);
     border-color: #ccc;
-    box-shadow: 0 0 3px lighten(@danger, 20%);
+    box-shadow: 0 0 3px lighten(@error, 20%);
   }
 }
 
