@@ -39,26 +39,15 @@ function renderOptionsPageApp(root, store) {
     console.log('All permissions fetched.')
     root.render(
       <Provider store={store}>
-        <OptionsPageApp
-          initialView={window.location.hash.substring(1)}
-          onCurrentViewChange={(v) => updateCurrentView(v)}
-          permissions={permissions}
-        />
+        <OptionsPageApp initialView={window.location.hash.substring(1)} onCurrentViewChange={(v) => updateCurrentView(v)} permissions={permissions} />
       </Provider>
     )
   })
 
   window.chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if (
-      request.receiver &&
-      request.receiver === 'dashboard' &&
-      typeof request.logMessage !== 'undefined'
-    ) {
+    if (request.receiver && request.receiver === 'dashboard' && typeof request.logMessage !== 'undefined') {
       console.log('Message received', request.logMessage)
-      const msg =
-        typeof request.logMessage === 'string'
-          ? request.logMessage
-          : JSON.stringify(request.logMessage)
+      const msg = typeof request.logMessage === 'string' ? request.logMessage : JSON.stringify(request.logMessage)
       const mbox = document.getElementById('message-box')
       mbox.className = 'fade-to-visible'
       mbox.innerHTML = '(' + new Date().toLocaleTimeString() + ') ' + msg
@@ -96,6 +85,8 @@ const rootElement = document.getElementById('app')
 const app = rootElement.getAttribute('data-app')
 const root = createRoot(rootElement)
 
+window.chrome.runtime.connect({ name: 'POPUP' })
+
 const initPopup = () => {
   const store = new Store({
     portName: 'DEMO_MONKEY_STORE' // communication port name
@@ -131,11 +122,7 @@ const initPopup = () => {
             .handle(window.location.search)
             .catch((error) => {
               logger('error', error).write()
-              window.history.replaceState(
-                {},
-                document.title,
-                window.location.pathname + window.location.hash
-              )
+              window.history.replaceState({}, document.title, window.location.pathname + window.location.hash)
             })
             .then((configuration) => {
               if (configuration) {
@@ -147,11 +134,7 @@ const initPopup = () => {
                     view: `configuration/${latest.id}`
                   })
                 })
-                window.history.replaceState(
-                  {},
-                  document.title,
-                  window.location.pathname + window.location.hash
-                )
+                window.history.replaceState({}, document.title, window.location.pathname + window.location.hash)
               }
             })
             .finally(() => {
@@ -170,7 +153,7 @@ const initPopup = () => {
     })
 }
 
-initPopup()
+// initPopup()
 
 window.chrome.runtime.onMessage.addListener((req) => {
   if (req.type === 'STORE_INITIALIZED') {

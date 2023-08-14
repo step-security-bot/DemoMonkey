@@ -121,21 +121,13 @@ try {
 
     scope.chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       if (request.receiver && request.receiver === 'background') {
-        if (
-          typeof request.count === 'number' &&
-          typeof sender.tab === 'object' &&
-          typeof sender.tab.id === 'number'
-        ) {
+        if (typeof request.count === 'number' && typeof sender.tab === 'object' && typeof sender.tab.id === 'number') {
           badge.updateDemoCounter(request.count, sender.tab.id)
         }
         if (request.task && request.task === 'addUrl' && typeof request.description === 'object') {
           netRequestManager.add(request.description, sender.tab.id)
         }
-        if (
-          request.task &&
-          request.task === 'removeUrl' &&
-          typeof request.description === 'object'
-        ) {
+        if (request.task && request.task === 'removeUrl' && typeof request.description === 'object') {
           netRequestManager.remove(request.description, sender.tab.id)
         }
         if (request.task && request.task === 'clearUrls') {
@@ -208,6 +200,12 @@ try {
     }
     init()
 
+    scope.chrome.runtime.onConnect.addListener((port) => {
+      if (port.name === 'POPUP') {
+        init()
+      }
+    })
+
     function updateStorage(store) {
       const configurations = store.getState().configurations
       const settings = store.getState().settings
@@ -218,10 +216,7 @@ try {
         settings,
         monkeyID: store.getState().monkeyID
       })
-      if (
-        settings.optionalFeatures.webRequestHook &&
-        configurations.filter((c) => c.enabled).length > 0
-      ) {
+      if (settings.optionalFeatures.webRequestHook && configurations.filter((c) => c.enabled).length > 0) {
         netRequestManager.enable()
       } else {
         netRequestManager.disable()
@@ -244,10 +239,7 @@ try {
       // Persist monkey ID. Shouldn't change after first start.
       scope.chrome.storage.local.set({ monkeyID: store.getState().monkeyID })
 
-      if (
-        settings.optionalFeatures.webRequestHook &&
-        store.getState().configurations.filter((c) => c.enabled).length > 0
-      ) {
+      if (settings.optionalFeatures.webRequestHook && store.getState().configurations.filter((c) => c.enabled).length > 0) {
         netRequestManager.enable()
       } else {
         netRequestManager.disable()
