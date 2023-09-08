@@ -87,7 +87,7 @@ try {
         return
       }
       scope.chrome.tabs.get(tabId, (tab) => {
-        if (!tab.url || !tab.url.startsWith('http')) {
+        if (!tab.url || !tab.url.startsWith('http') || tab.url === 'undefined') {
           return
         }
         if (tab.url) {
@@ -195,7 +195,6 @@ try {
           run(state)
           isInitialized = true
         }
-        scope.chrome.runtime.sendMessage({ type: 'STORE_INITIALIZED' })
       })
     }
     init()
@@ -203,6 +202,7 @@ try {
     scope.chrome.runtime.onConnect.addListener((port) => {
       if (port.name === 'POPUP') {
         init()
+        scope.chrome.runtime.sendMessage({ type: 'STORE_INITIALIZED' })
       }
     })
 
